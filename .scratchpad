@@ -1,0 +1,67 @@
+# Current Task
+Modify the CrUX data conversion script to:
+1. Accept output file path as a parameter
+2. Support appending to existing file
+3. Update existing URL data if present
+4. Add Status column based on metric thresholds
+5. Group data by metrics with empty lines between sections
+6. Show period as "Month Week#" format
+
+## Progress Tracking
+[X] Create a new file to handle the JSON to TSV conversion
+[X] Parse and extract relevant metrics data
+[X] Format dates as Month Week# (e.g., "Jan 1")
+[X] Generate TSV output with proper headers
+[X] Add command line argument handling
+[X] Implement file writing functionality
+[X] Add output file parameter
+[X] Implement file appending/updating logic
+[X] Add Status column based on metric thresholds
+[X] Implement metric grouping with separators
+[X] Simplify date representation
+[ ] Test the code with the provided sample data
+
+## Notes and Observations
+- Data contains three main metrics in order:
+  1. largest_contentful_paint (LCP)
+    - Good: ≤ 2.5s (2500ms)
+    - Needs Improvement: 2.5s-4s
+    - Poor: > 4s
+  2. interaction_to_next_paint (INP)
+    - Good: ≤ 200ms
+    - Needs Improvement: 200-500ms
+    - Poor: > 500ms
+  3. cumulative_layout_shift (CLS)
+    - Good: ≤ 0.1
+    - Needs Improvement: 0.1-0.25
+    - Poor: > 0.25
+- Each metric has histogram data and percentile data
+- Collection periods are weekly
+- Data is grouped by metric type with empty lines between sections
+- Metrics are output in a consistent order matching the Chrome UX Report
+- Period format is now "Month Week#" (e.g., "Jan 1", "Feb 3")
+- Need to handle:
+  - Reading existing TSV file if it exists
+  - Updating data for existing URLs
+  - Appending new URL data
+  - Creating new file if it doesn't exist
+  - Maintaining metric grouping when updating
+
+## Next Steps
+1. Test with sample data
+2. Verify Status categorization matches Chrome UX Report
+3. Test with multiple URLs and updates
+4. Verify metric grouping and spacing
+5. Verify week calculation is accurate
+
+## Completed Tasks
+- Created crux-to-tsv.js with conversion logic
+- Implemented date formatting as Month Week#
+- Added headers and proper TSV structure
+- Added command line argument handling
+- Implemented file reading and writing with error handling
+- Added progress logging
+- Added Status column with proper thresholds
+- Implemented metric grouping with separators
+- Added consistent metric ordering
+- Simplified date representation to Month Week# format 
